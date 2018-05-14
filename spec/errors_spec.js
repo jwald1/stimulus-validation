@@ -1,16 +1,42 @@
-import chai, { expect } from "chai"
-import sinon from "sinon"
-import sinonChai from "sinon-chai"
+import { expect } from "chai"
 import { Errors } from "../src/errors"
 
-chai.use(sinonChai)
-
-const addCallback = sinon.spy()
-const clearAttributeCallback = sinon.spy()
-const errors = new Errors(addCallback, clearAttributeCallback)
+const errors = new Errors()
 
 beforeEach(function() {
   errors.clear()
+})
+
+describe("size", function() {
+  it("few messages for the same attr", function() {
+    errors.add("attr", "not valid")
+    errors.add("attr", "not valid")
+
+    expect(errors.size).to.eql(2)
+  })
+
+  it("multiple attributes", function() {
+    errors.add("attr", "not valid")
+    errors.add("attr1", "not valid")
+
+    expect(errors.size).to.eql(2)
+  })
+
+  it("no messages", function() {
+    expect(errors.size).to.eql(0)
+  })
+})
+
+describe("hasAny", function() {
+  it("returns true when it has messages", function() {
+    errors.add("attr", "not valid")
+
+    expect(errors.hasAny()).to.eql(true)
+  })
+
+  it("returns false when it has no messages", function() {
+    expect(errors.hasAny()).to.eql(false)
+  })
 })
 
 describe("add", function() {
@@ -32,12 +58,6 @@ describe("add", function() {
       expect(errors.get("someAttr")).to.include("this is also not valid")
     })
   })
-
-  it("calls addCallback with attribute", function() {
-    errors.add("someAttr", "not valid")
-
-    expect(addCallback).to.have.been.calledWith("someAttr")
-  })
 })
 
 describe("clearAttribute", function() {
@@ -46,12 +66,5 @@ describe("clearAttribute", function() {
     errors.clearAttribute("someAttr")
 
     expect(errors.has("someAttr")).to.be.false
-  })
-
-  it("calls clearAttributeCallback with attribute", function() {
-    errors.add("someAttr", "not valid")
-    errors.clearAttribute("someAttr")
-
-    expect(clearAttributeCallback).to.have.been.calledWith("someAttr")
   })
 })

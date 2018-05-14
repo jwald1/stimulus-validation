@@ -1,7 +1,5 @@
 export class Errors {
-  constructor(addCallback, clearAttributeCallback) {
-    this.addCallback = addCallback
-    this.clearAttributeCallback = clearAttributeCallback
+  constructor() {
     this.dataMap = new Map()
   }
 
@@ -9,8 +7,17 @@ export class Errors {
     return this.dataMap.clear()
   }
 
-  size() {
-    return this.dataMap.size
+  get size() {
+    const arrayOfmessages = Array.from(this.dataMap.values())
+
+    return arrayOfmessages.reduce(
+      (total, messages) => (total += messages.length),
+      0
+    )
+  }
+
+  hasAny() {
+    return !!this.size
   }
 
   has(attribute) {
@@ -22,18 +29,14 @@ export class Errors {
   }
 
   add(attribute, message) {
-    if (this.dataMap.has(attribute)) {
-      this.dataMap.get(attribute).push(message)
-    } else {
-      this.dataMap.set(attribute, [message])
-    }
+    const attributesMessages = this.dataMap.get(attribute) || []
+    attributesMessages.push(message)
 
-    this.addCallback(attribute)
+    this.dataMap.set(attribute, attributesMessages)
   }
 
   clearAttribute(attribute) {
     this.dataMap.delete(attribute)
-    this.clearAttributeCallback(attribute)
   }
 
   get forEach() {
