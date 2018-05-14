@@ -2,23 +2,37 @@ import { expect } from "chai"
 import { Attribute } from "../src/attribute"
 import formHtml from "./fixtures/form.html"
 
-beforeEach(function() {
-  this.form = document.createElement("div")
-  this.form.innerHTML = formHtml
-})
-
-describe("value", function() {
-  it("returns value of element", function() {
-    const el = this.form.querySelector("#name")
-
-    const attribute = new Attribute(el, {})
-    expect(attribute.value).to.eql(this.form.querySelector("#name").value)
+describe("Attribute", function() {
+  before(function() {
+    this.form = document.createElement("div")
+    this.form.innerHTML = formHtml
   })
 
-  it("returns boolean if element is a checkbox", function() {
-    const el = this.form.querySelector("#terms")
-    const attribute = new Attribute(el, {})
+  describe("value", function() {
+    it("returns value of element", function() {
+      const el = this.form.querySelector("#name")
 
-    expect(attribute.value).to.eql(false)
+      const attribute = new Attribute("name", el, {})
+      expect(attribute.value).to.eql(this.form.querySelector("#name").value)
+    })
+
+    it("returns boolean if element is a checkbox", function() {
+      const el = this.form.querySelector("#terms")
+      const attribute = new Attribute("terms", el, {})
+
+      expect(attribute.value).to.eql(false)
+    })
+  })
+
+  describe("validationMethods", function() {
+    it("returns an array of custom validation methods registered on the attribute", function() {
+      const el = this.form.querySelector("#name")
+      const validations = {
+        required: { attributes: ["name"] },
+        long: { attributes: ["name", "address"] }
+      }
+      const attribute = new Attribute("name", el, validations)
+      expect(attribute.validationMethods).to.have.members(["required", "long"])
+    })
   })
 })

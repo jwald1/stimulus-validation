@@ -1,5 +1,6 @@
 export class Attribute {
-  constructor(el, validations) {
+  constructor(attribute, el, validations) {
+    this.attribute = attribute
     this.el = el
     this.validations = validations
   }
@@ -8,5 +9,15 @@ export class Attribute {
     return this.el.type === "checkbox" ? this.el.checked : this.el.value
   }
 
-  validationMethods(attribute) {}
+  get validationMethods() {
+    const result = []
+
+    Object.entries(this.validations).forEach(([methodName, { attributes }]) => {
+      if (attributes.includes(this.attribute)) {
+        result.push(methodName)
+      }
+    })
+
+    return result
+  }
 }
