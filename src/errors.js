@@ -39,7 +39,7 @@ export class Errors {
     this.dataMap.delete(attribute)
   }
 
-  get forEach() {
-    return this.dataMap.forEach
+  forEach(...args) {
+    return this.dataMap.forEach(...args)
   }
 }

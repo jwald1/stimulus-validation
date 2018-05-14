@@ -1,4 +1,5 @@
 import { Attribute } from "./attribute"
+import { attributeFromElement } from "./element_attribute"
 
 export class Attributes {
   constructor(controller) {
@@ -14,13 +15,17 @@ export class Attributes {
 
   createAttributesMap() {
     this.validationElements.forEach(el => {
-      const attribute = el.dataset.attr.split(".")[1]
+      const attribute = attributeFromElement(el)
 
       this.dataMap.set(
         attribute,
         new Attribute(attribute, el, this.validations)
       )
     })
+  }
+
+  forEach(...args) {
+    return this.dataMap.forEach(...args)
   }
 
   get validationElements() {
