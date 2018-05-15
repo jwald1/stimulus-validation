@@ -15,13 +15,25 @@ export class Attributes {
 
   createAttributesMap() {
     this.validationElements.forEach(el => {
-      const attribute = attributeFromElement(el)
+      const attrName = attributeFromElement(el)
 
-      this.dataMap.set(
-        attribute,
-        new Attribute(attribute, el, this.validations)
-      )
+      this.add(attrName, el)
     })
+  }
+
+  refresh() {
+    this.createAttributesMap()
+  }
+
+  has(value) {
+    return this.dataMap.has(value)
+  }
+
+  add(attrName, el, validations = this.validations) {
+    const attribute = new Attribute(attrName, el, validations)
+    this.dataMap.set(attrName, attribute)
+
+    return attribute
   }
 
   forEach(...args) {
