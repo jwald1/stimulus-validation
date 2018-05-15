@@ -45,7 +45,7 @@ export class ValidationController extends Controller {
     this.errors.clear()
 
     this.attributes.forEach(({ el, value }, attribute) => {
-      this._validator.run(attribute)
+      this.runValidator(attribute)
 
       if (this.errors.hasAny()) {
         event.preventDefault()

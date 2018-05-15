@@ -21,6 +21,10 @@ export class Attributes {
     })
   }
 
+  get size() {
+    return this.dataMap.size
+  }
+
   refresh() {
     this.createAttributesMap()
   }

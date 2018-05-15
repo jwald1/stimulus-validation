@@ -70,12 +70,48 @@ describe("ValidationController", function() {
   })
 
   describe("validateAll", function() {
-    it("runs validations on each attribute", function() {})
+    beforeEach(function() {
+      this.event = { preventDefault: () => {} }
+      sandbox.stub(this.event, "preventDefault")
+      sandbox.stub(this.controller, "afterValidateAll")
+      sandbox.stub(this.controller, "afterValidate")
 
-    it("calls afterValidate callback foreach attribute", function() {})
+      ValidationController.rules = { name: { presence: { allowEmpty: false } } }
+    })
 
-    it("calls preventDefault if there is any error", function() {})
+    afterEach(function() {
+      sandbox.restore()
+      ValidationController.rules = {}
+    })
 
-    it("calls afterValidateAll with the event", function() {})
+    it("runs validations on each attribute", function() {
+      sandbox.stub(this.controller, "runValidator")
+      this.controller.validateAll(this.event)
+
+      expect(this.controller.runValidator).has.been.callCount(
+        this.controller.attributes.size
+      )
+    })
+
+    it("calls afterValidate callback foreach attribute", function() {
+      this.controller.validateAll(this.event)
+
+      expect(this.controller.afterValidate).has.been.callCount(
+        this.controller.attributes.size
+      )
+    })
+
+    it("calls preventDefault if there is any error", function() {
+      this.controller.validateAll(this.event)
+
+      expect(this.event.preventDefault).has.been.called
+    })
+
+    it("calls afterValidateAll with the event one time", function() {
+      this.controller.validateAll(this.event)
+
+      expect(this.controller.afterValidateAll).has.been.calledWith(this.event)
+      expect(this.controller.afterValidateAll).has.been.calledOnce
+    })
   })
 })
