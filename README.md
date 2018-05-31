@@ -4,6 +4,8 @@ stimulus-validation helps validate user input and helps you display errors.
 
 It does not dictate how the errors are displayed; instead, all errors are stored in the `errors` object, and it is up to the developer how to display them. Stimulus-validation has two types of validations, built-in validators, and custom validators. The built-in validators are a wrapper for Validatejs so you can all Validatejs' validators expect equality validator.
 
+[Codepen Demo](https://codepen.io/jwald1/pen/zaGdZN?editors=1010)
+
 ### Installation
 
 ```Javascript
