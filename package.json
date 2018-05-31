@@ -1,9 +1,9 @@
 {
   "name": "stimulus-validation",
   "description": "Validation controller for Stimulus.js",
-  "version": "1.0.3",
+  "version": "1.0.1-beta.1",
   "author": "Jacob Wald",
-  "main": "src/validation_controller.js",
+  "main": "dist/validation_controller.min.js",
   "license": "MIT",
   "scripts": {
     "start": "webpack --watch",
@@ -12,10 +12,7 @@
     "test:watch": "yarn test --auto-watch --no-single-run",
     "test:browser": "yarn test:watch --browsers Chrome"
   },
-  "keywords": [
-    "stimulus",
-    "validation"
-  ],
+  "keywords": ["stimulus", "validation"],
   "peerDependencies": {
     "stimulus": "^1.0.1"
   },

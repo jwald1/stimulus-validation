@@ -41,7 +41,7 @@ export class Validator {
         throw new Error(`${methodName} is not defined`)
       }
 
-      method.call(this.controller, { name: attribute, value, el })
+      method.call(this.controller, { attr: attribute, value, el })
     })
   }
 

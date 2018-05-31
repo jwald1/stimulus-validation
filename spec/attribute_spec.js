@@ -27,11 +27,11 @@ describe("Attribute", function() {
   describe("validationMethods", function() {
     it("returns an array of custom validation methods registered on the attribute", function() {
       const el = this.form.querySelector("#name")
-      const validations = {
+      const validators = {
         required: { attributes: ["name"] },
         long: { attributes: ["name", "address"] }
       }
-      const attribute = new Attribute("name", el, validations)
+      const attribute = new Attribute("name", el, validators)
       expect(attribute.validationMethods).to.have.members(["required", "long"])
     })
   })

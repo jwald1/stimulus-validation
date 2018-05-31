@@ -6,7 +6,7 @@ import { attributeFromElement } from "./element_attribute"
 
 export class ValidationController extends Controller {
   static rules = {} // overwirde in subclass
-  static validations = [] // overwirde in subclass
+  static validators = [] // overwirde in subclass
 
   connect() {
     this.errors = new Errors()
@@ -25,7 +25,7 @@ export class ValidationController extends Controller {
     const { value } = this.attributes.get(attribute)
 
     this.runValidator(attribute)
-    this.afterValidate({ el, name: attribute, value })
+    this.afterValidate({ el, attr: attribute, value })
   }
 
   afterValidate(attribute) {
@@ -50,7 +50,7 @@ export class ValidationController extends Controller {
       if (this.errors.hasAny()) {
         event.preventDefault()
       }
-      this.afterValidate({ el, name: attribute, value })
+      this.afterValidate({ el, attr: attribute, value })
     })
 
     this.afterValidateAll(event)

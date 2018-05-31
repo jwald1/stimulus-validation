@@ -21,7 +21,7 @@ describe("Validator", function() {
       identifier: "validations",
       element: form.querySelector('[data-controller="validations"]'),
       ["constructor"]: {
-        validations: { agree: { attributes: ["terms"] } },
+        validators: { agree: { attributes: ["terms"] } },
         rules: {
           name: { presence: { allowEmpty: false } },
           email: { presence: { allowEmpty: false }, email: true }
@@ -53,7 +53,7 @@ describe("Validator", function() {
         this.controller.agree = function() {}
         sandbox.stub(this.controller, "agree")
         const terms = this.form.querySelector("#terms")
-        const params = { name: "terms", value: false, el: terms }
+        const params = { attr: "terms", value: false, el: terms }
 
         this.validator.invokeValidationMethods("terms")
         expect(this.controller.agree).to.have.been.calledWith(params)

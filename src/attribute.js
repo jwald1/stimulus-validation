@@ -1,8 +1,8 @@
 export class Attribute {
-  constructor(attribute, el, validations) {
+  constructor(attribute, el, validators) {
     this.attribute = attribute
     this.el = el
-    this.validations = validations
+    this.validators = validators
   }
 
   get value() {
@@ -12,7 +12,7 @@ export class Attribute {
   get validationMethods() {
     const result = []
 
-    Object.entries(this.validations).forEach(([methodName, { attributes }]) => {
+    Object.entries(this.validators).forEach(([methodName, { attributes }]) => {
       if (attributes.includes(this.attribute)) {
         result.push(methodName)
       }

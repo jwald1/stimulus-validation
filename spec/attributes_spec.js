@@ -17,7 +17,7 @@ describe("Attributes", function() {
     const controller = {
       identifier: "validations",
       element: form.querySelector('[data-controller="validations"]'),
-      constructor: { validations: { agree: { attributes: ["terms"] } } }
+      constructor: { validators: { agree: { attributes: ["terms"] } } }
     }
 
     this.attributes = new Attributes(controller)

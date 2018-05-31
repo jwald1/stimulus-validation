@@ -33,8 +33,8 @@ export class Attributes {
     return this.dataMap.has(value)
   }
 
-  add(attrName, el, validations = this.validations) {
-    const attribute = new Attribute(attrName, el, validations)
+  add(attrName, el, validators = this.validators) {
+    const attribute = new Attribute(attrName, el, validators)
     this.dataMap.set(attrName, attribute)
 
     return attribute
@@ -56,7 +56,7 @@ export class Attributes {
     return this.controller.element
   }
 
-  get validations() {
-    return this.controller.constructor.validations
+  get validators() {
+    return this.controller.constructor.validators
   }
 }

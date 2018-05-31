@@ -62,7 +62,7 @@ describe("ValidationController", function() {
         expect(this.controller.runValidator).has.been.calledWith("someNewAttr")
         expect(this.controller.afterValidate).has.been.calledWith({
           el,
-          name: "someNewAttr",
+          attr: "someNewAttr",
           value: ""
         })
       })

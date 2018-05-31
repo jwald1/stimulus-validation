@@ -1,48 +1,44 @@
-const webpack = require('webpack')
+const webpack = require("webpack")
 const path = require("path")
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const env = require('yargs').argv.env; // use --env with webpack 2
-const pkg = require('./package.json');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const env = require("yargs").argv.env // use --env with webpack 2
+const pkg = require("./package.json")
 
-let libraryName = 'validation-controller';
+let libraryName = "validation-controller"
 
-let plugins = [], outputFile;
+let plugins = [],
+  outputFile
 
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin());
-  outputFile = libraryName + '.min.js';
+if (env === "build") {
+  plugins.push(new UglifyJsPlugin())
+  outputFile = libraryName + ".min.js"
 } else {
-  outputFile = libraryName + '.js';
+  outputFile = libraryName + ".js"
 }
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   entry: {
-    bundle: "./src/validatiion_controller.js.js"
+    bundle: "./src/validation_controller.js"
   },
 
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: outputFile,
-    library: 'StimulusValidation',
-    libraryTarget: 'umd'
+    library: "StimulusValidation",
+    libraryTarget: "umd"
   },
-
 
   module: {
     rules: [
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
-        exclude: [
-          /node_modules/
-        ],
-        use: [
-          { loader: "babel-loader" }
-        ]
+        include: path.resolve(__dirname, "src"),
+        exclude: [/node_modules/],
+        use: [{ loader: "babel-loader" }]
       }
     ]
   },
 
-   plugins: plugins
+  plugins: plugins
 }
