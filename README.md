@@ -98,13 +98,25 @@ Let's say we want to validate the input length to be equal to 10.
 ```javascript
   validLength({attr, value}) {
     if(value.length !== 10) {
-	this.errors.add(attr, 'must be 10 chars long')
-   }
-}
+	    this.errors.add(attr, 'must be 10 chars long')
+    }
+  }
 ```
 
-After definigng the validator we need to register it and specify the attributes the validator should validate.
+After defining the validator we need to register it and specify the attributes the validator should validate.
 
 ```javascript
   static validators = { validLength: { attributes: ['someAttr' ]  } }
 ```
+
+### TODO
+
+Rewrite README
+
+### Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/jwald1/stimulus-validation. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
+### License
+
+This package is available as open source under the terms of the MIT License.
