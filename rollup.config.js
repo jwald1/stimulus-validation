@@ -27,7 +27,7 @@ export default {
       sourcemap: true,
       globals: {
         stimulus: "Stimulus",
-        Validate: "Validate"
+        Validate: "validate.js"
       }
     }
   ],
