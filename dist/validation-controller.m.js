@@ -1,11 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var stimulus = require('stimulus');
-var Validate = _interopDefault(require('validate.js'));
+import { Controller } from 'stimulus';
+import Validate from 'validate.js';
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -596,11 +590,11 @@ function (_Controller) {
   }]);
 
   return ValidationController;
-}(stimulus.Controller);
+}(Controller);
 
 defineProperty(ValidationController, "rules", {});
 
 defineProperty(ValidationController, "validators", []);
 
-exports.ValidationController = ValidationController;
-//# sourceMappingURL=validation-controller.js.map
+export { ValidationController };
+//# sourceMappingURL=validation-controller.m.js.map

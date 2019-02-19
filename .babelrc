@@ -1,6 +1,14 @@
 {
-  "plugins": ["transform-class-properties", "transform-runtime"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-runtime"
+  ],
   "presets": [
-    ["env", { "modules": false }]
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
   ]
 }
