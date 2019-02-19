@@ -1,7 +1,7 @@
 {
   "name": "stimulus-validation",
   "description": "Validation controller for Stimulus.js",
-  "version": "1.0.1-beta.2",
+  "version": "1.0.1-beta.3",
   "author": "Jacob Wald",
   "main": "dist/validation-controller.js",
   "umd:main": "dist/validation-controller.umd.js",
