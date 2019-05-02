@@ -34,8 +34,10 @@ describe("Attributes", function() {
       const name = this.form.querySelector("#name")
       const email = this.form.querySelector("#email")
       const terms = this.form.querySelector("#terms")
+      const password = this.form.querySelector("#password")
+      const password_confirmation = this.form.querySelector("#password_confirmation")
 
-      expect(this.validationElementsArray).to.have.members([name, email, terms])
+      expect(this.validationElementsArray).to.have.members([name, email, terms, password, password_confirmation])
     })
 
     it("only includes attr that identifier prefix", function() {
@@ -49,7 +51,7 @@ describe("Attributes", function() {
       const mapKeys = Array.from(this.attributes.dataMap.keys())
       const mapValues = Array.from(this.attributes.dataMap.values())
 
-      expect(mapKeys).to.have.members(["name", "email", "terms"])
+      expect(mapKeys).to.have.members(["name", "email", "terms", "password", "password_confirmation"])
       expect(mapValues).to.all.be.an.instanceof(Attribute)
     })
   })

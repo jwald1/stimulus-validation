@@ -472,7 +472,18 @@ function () {
       var _this$attributes$get2 = this.attributes.get(attribute),
           value = _this$attributes$get2.value;
 
-      return [defineProperty({}, attribute, value), defineProperty({}, attribute, this.rules[attribute])];
+      var validateValue = defineProperty({}, attribute, value);
+
+      if (rule.equality) {
+        var anotherAttribute = rule.equality.attribute;
+
+        var _this$attributes$get3 = this.attributes.get(anotherAttribute),
+            _value = _this$attributes$get3.value;
+
+        validateValue[anotherAttribute] = _value;
+      }
+
+      return [validateValue, defineProperty({}, attribute, this.rules[attribute])];
     }
   }, {
     key: "rules",

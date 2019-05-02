@@ -53,7 +53,17 @@ export class Validator {
     }
 
     const { value } = this.attributes.get(attribute)
-    return [{ [attribute]: value }, { [attribute]: this.rules[attribute] }]
+    const validateValue = {
+      [attribute]: value,
+    }
+
+    if (rule.equality) {
+      const anotherAttribute = rule.equality.attribute
+      const { value } = this.attributes.get(anotherAttribute)
+      validateValue[anotherAttribute] = value
+    }
+
+    return [validateValue, { [attribute]: this.rules[attribute] }]
   }
 
   get rules() {
