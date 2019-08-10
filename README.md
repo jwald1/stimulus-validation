@@ -39,6 +39,15 @@ So we need to define these rules. In the controller add:
   }
 ```
 
+### Validating Password
+
+Validating the equality of password and password confirmation can be done by using the rule below.
+
+```Javascript
+  static rules = {
+    password_confirmation: { equality: { attribute: "password" } }
+  }```
+
 Each key in rules corresponds to an attribute defined in the markup.
 
 ### HTML
