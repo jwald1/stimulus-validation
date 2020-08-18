@@ -24,7 +24,8 @@ describe("Validator", function() {
         validators: { agree: { attributes: ["terms"] } },
         rules: {
           name: { presence: { allowEmpty: false } },
-          email: { presence: { allowEmpty: false }, email: true }
+          email: { presence: { allowEmpty: false }, email: true },
+          password_confirmation: { equality: { attribute: "password" } }
         }
       }
     }
@@ -131,6 +132,18 @@ describe("Validator", function() {
         ]
 
         expect(this.validator.validatejsParams("name")).to.eql(params)
+      })
+
+    })
+
+    context("equality rule", function() {
+      it("returns validatajs params for password_confirmation", function() {
+        const params = [
+          { password: "", password_confirmation: "" },
+          { password_confirmation: { equality: { attribute: "password" } } }
+        ]
+
+        expect(this.validator.validatejsParams("password_confirmation")).to.eql(params)
       })
     })
   })
