@@ -25,6 +25,9 @@ describe("Validator", function() {
         rules: {
           name: { presence: { allowEmpty: false } },
           email: { presence: { allowEmpty: false }, email: true }
+        },
+        validatorOptions: {
+          fullMessages: false
         }
       }
     }
@@ -127,7 +130,8 @@ describe("Validator", function() {
       it("returns validatajs params", function() {
         const params = [
           { name: "" },
-          { name: { presence: { allowEmpty: false } } }
+          { name: { presence: { allowEmpty: false } } },
+          { fullMessages: false }
         ]
 
         expect(this.validator.validatejsParams("name")).to.eql(params)
