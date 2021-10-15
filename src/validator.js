@@ -53,11 +53,19 @@ export class Validator {
     }
 
     const { value } = this.attributes.get(attribute)
-    return [{ [attribute]: value }, { [attribute]: this.rules[attribute] }]
+    return [
+      { [attribute]: value },
+      { [attribute]: this.rules[attribute] },
+      this.validatorOptions || {}
+    ]
   }
 
   get rules() {
     return this.controller.constructor.rules
+  }
+
+  get validatorOptions() {
+    return this.controller.constructor.validatorOptions
   }
 
   get errors() {
